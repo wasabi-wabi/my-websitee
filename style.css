@@ -1,0 +1,661 @@
+/* loading my custom font! */
+@font-face {
+    font-family: "Rodin Pro Bold";
+    src: url("templates/rodin-pixel.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Milton One Bold';
+    src: url(templates/Milton_One_Bold.otf) format("opentype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0; 
+    padding: 0;
+    overflow: hidden;
+}
+
+/* GO BACK BUTTONS */
+.back-button {
+
+    position: absolute;
+    top: 23px;
+    left: 14px;
+    z-index: 10;
+
+    background-color: rgb(65, 196, 252);
+    opacity: 0.27;
+    font-family: 'Rodin Pro Bold', sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    font-style: normal;
+    border-radius: 18px;
+
+
+    border: none;
+    cursor: pointer;
+    animation: reveal 2.9s forwards,
+    delay 2.9s forwards,
+    floater 1.7s ease-in-out infinite;
+}
+
+/* INDEX PAGE */
+.index-video-container {
+    z-index: -2;
+    transform: rotate(-90deg);
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+/* PHONE CONTAINER */
+.phone-container {
+    position: absolute;
+    transform: translate(115%, 30%) scale(0.9) rotate(3deg);
+    z-index: 10;
+
+
+
+    animation: 
+    shake .2s ease-in-out infinite alternate;
+    animation-delay: 1.9s;
+    cursor: pointer;
+}
+
+.phone-container.paused,
+.phone.paused {
+        animation-play-state: paused !important;
+}
+
+.phone-container img:hover {
+    transform: scale(1.05);
+}
+
+.phone-container img:active {
+    transform: scale(0.99);
+}
+
+.phone {
+    position: absolute;
+    transform: translate(115%, 30%) scale(0.9) rotate(3deg);
+
+    opacity: 0;
+    animation: reveal 1.8s forwards;
+    animation-delay: 1.8s forwards;
+    z-index: 0;  
+}
+
+.phone img:hover {
+    transform: scale(1.05);
+}
+
+.phone img:active {
+    transform: scale(0.99);
+}
+
+
+@keyframes shake{
+    from{
+        transform:  translate(115%, 30%) rotate(15deg) scale(0.9);
+    }
+    to{
+        transform: translate(115%, 30%) rotate(-15deg) scale(0.9);
+        transform-origin: translate(115%, 30%) rotate(3deg);
+    }
+} 
+
+
+
+
+/* LOADING SCREEN */
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(406px, calc(100vw - 48px));
+    z-index: 10000;
+}
+
+.loading-page {
+    background-color: #49b2f4;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: #49b2f4;
+    clip-path: circle(0 at 50% 50%);
+    pointer-events: none;
+}
+
+body.page-leaving::after {
+    animation: wipe-close .7s ease-in forwards;
+}
+
+body.page-entering::after {
+    animation: wipe-open .7s ease-out forwards;
+}
+
+@keyframes wipe-close {
+    from {
+        clip-path: circle(0 at 50% 50%);
+    }
+    to {
+        clip-path: circle(150vmax at 50% 50%);
+    }
+}
+
+@keyframes wipe-open {
+    from {
+        clip-path: circle(150vmax at 50% 50%);
+    }
+    to {
+        clip-path: circle(0 at 50% 50%);
+    }
+}
+
+
+.percent {
+    margin-bottom: -70px;
+    font-family: 'Rodin Pro Bold', sans-serif;
+    color: #9ce0ff;
+    font-size: 40px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.progress-bar {
+    position: relative;
+    width: 100%;
+    height: 21px;
+    background: #ffffff;
+    border-radius: 13px;
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+.progress {
+    width: 0;
+    height: 15px;
+    background: #7ed6ff;
+    border-radius: 13px;
+}
+
+.text {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: #f8fafa;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-family: 'Rodin Pro Bold', sans-serif;
+    line-height: 21px;
+    margin: 0;
+    display: none;
+    place-items: center;
+    text-align: center;
+    z-index: 2;
+}
+
+.text-blink {
+    animation: blink .7s ease-in-out .1s;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .2;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* SECOND PAGE MAIN */
+.video-container {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    object-position: center;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    margin-left: 10%;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+
+    max-width: none;
+    max-height: none;
+    min-width: 100%;
+    min-height: 100%;
+    
+    object-position: center;
+    object-fit: contain;  
+}
+
+/*Links*/
+
+.custom-word {
+    font-family: 'Milton One Bold', sans-serif;
+    font-size: 25rem;
+
+    display: inline-block;
+    z-index: 5;
+    
+    transform: rotate(90deg) 
+    translateY(355px) 
+    translateX(-60px);
+
+    opacity: 0;
+    animation: reveal 1.8s forwards;
+    animation-delay: 1.8s;
+}
+
+.links-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 10;
+    gap: 1px;
+
+    font-family: "Rodin Pro Bold", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 3rem;
+
+    transform: translateX(-100px);
+    opacity: 0;
+    animation: reveal 2.7s forwards;
+    animation-delay: 2.7s;
+    overflow: visible !important;
+}
+
+.links-container a {
+    position: relative;
+    display: inline-block;
+    transform:  rotate(var(--rotation, 0deg));
+    transform-origin: right center;
+    
+    padding: 8px 32px 8px 22px;
+    margin: -6px 0;
+    
+    white-space: nowrap;
+
+
+    transition: transform 0.08s ease-out, color 0.08s ease-out !important;
+}
+
+.links-container a:hover {
+    color: black !important;
+
+    background-image: none;
+    z-index: 10;
+    
+    transform: rotate(var(--rotation, 0deg)) translate(50px, -12px) scale(1.22);
+}
+
+.links-container a:hover::before {
+    content: "";
+    position: absolute;
+
+    inset: 0;
+    background-image: url(templates/whiteCursor.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    
+
+    transform: rotate(6deg) translate(20px, -20px) scale(1.05, 1.3);
+    clip-path: polygon(0% 25%, 96% 0%, 81% 90%, 0% 100%);
+
+    
+    
+    z-index: -1;
+    pointer-events: none;
+
+}
+
+.links-container a[href="aboutMe.html"]:hover::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 22px;
+    top: 8px;
+    color: #ff1e1e;
+    z-index: 2;
+
+    clip-path: polygon(108% -36%, 112% 104%, -10% 62%, -10% 68%) !important;
+}
+
+.links-container a[href="sketchbook.html"]:hover::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 22px;
+    top: 8px;
+    color: #ff1e1e;
+    z-index: 2;
+
+    clip-path: polygon(108% -22%, 110% 112%, 45% 80%, -10% 52%, -11% 61%) !important;
+}
+
+/* TOP-RIGHT, BOTTOM-RIGHT, BOTTOM-MIDDLE, BOTTOM-LEFT, TOP-LEFT*/
+
+.links-container a[href="hobbies.html"]:hover::after {
+    content: attr(data-text);
+    position: absolute;
+
+    left: 22px;
+    top: 8px;
+    color: #ff1e1e;
+    z-index: 2;
+
+    clip-path: polygon(108% -21%, 112% 101%, 40% 80%, -10% 65%, -10% 69%) !important;
+}
+
+.links-container a[href="favs.html"]:hover::after {
+    content: attr(data-text);
+    position: absolute;
+
+    left: 22px;
+    top: 8px;
+    color: #ff1e1e;
+    z-index: 2;
+
+    clip-path: polygon(108% -12%, 112% 91%, 40% 83%, -10% 77%, -10% 80%) !important;
+}
+
+
+/* FIRST PAGE */
+
+.button-float-wrap {
+    display: inline-flex;
+    animation: floater 1.7s ease-in-out infinite;
+}
+
+.button{
+    position: relative;
+    padding: 9px 50px;
+
+    text-decoration: none; /*removes underline from <a> tag*/
+    transform-style: preserve-3d; 
+
+    background: linear-gradient(
+        180deg,
+        #55a9f3 0%,
+        #48a3f3 40%,   
+        #25a5ea 75%,
+        #1dd3fc 87%,  
+        #2140d8 100% 
+    );
+
+    /*BORDERS*/
+    border-color: #ffffff;
+    border-style: solid;
+    border-width: 7px 11px;
+    cursor: pointer;
+    border-radius: 30px;
+      
+    /*TEXT ALIGNMENT*/
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    /*FONT STYLES*/
+    color: #ffffff;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 32px;
+    font-weight: 535;
+    text-transform: lowercase;
+    letter-spacing: 0.5px;
+
+    transition: all 0.4s ease-in-out;
+    box-shadow: 
+        0px 12px 25px 2px rgba(11, 43, 126, 0.85),
+        0px 0px 45px 5px rgba(0, 110, 255, 0.6),
+        inset 0 4px 6px rgba(255, 255, 255, 0.5);
+}
+
+/*BUTTON TEXT*/
+.button-text {
+    position: relative;
+    display: inline-block;
+    transform: translateY(-9px);
+    color: #ffffff;
+
+    /*TEXT SHADOW*/
+    text-shadow: 
+        0px 0px 1px #ffffff,
+        -1.5px -1px 0.5px #073082,  
+        0px 1px 1px #ffffff;
+}
+
+/*Glow when hovering*/
+.button:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0px 12px 30px 2px rgba(11, 43, 126, 0.85),
+        0 0 25px rgba(0, 110, 255, 0.9),
+        inset 0 2px 5px rgba(255, 255, 255, 0.5);
+}
+
+.button:active {
+    transform: scale(0.99);
+}
+
+.button::before,
+.button::after {
+    content: "";
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%) translateZ(-1px); /*Changes so it's behind*/
+
+    height: 100%;
+    width: 150%;
+    z-index: -1;
+    background-repeat: no-repeat;
+}
+.button.animate::before { 
+    top: -70%;
+    background-image: url('waterTypeimages/bluebubble.png'),
+        url('waterTypeimages/bluebubble.png'),
+        url('whiteImages/spinStar.gif'),
+        url('whiteImages/spinSwirl.gif'),
+        url('whiteImages/spinSwirl.gif');
+
+    background-position: 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%;
+    background-size:  0px auto, 0px auto, 0px auto, 0px auto, 0px auto;
+}
+
+.button.animate:hover::before {
+    animation: topBubbles 1.5s ease-in-out infinite;
+}
+
+@keyframes topBubbles {
+    0% {
+        background-size: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px,;
+        background-position: 50% 100%, 50% 100%, 50% 100%, 50% 100%;
+    }
+    50% {
+        background-position: 15% 10%, 60% 70%, 30% 60%, 45% 20%, 10% 90%;
+        background-size:  26px auto, 30px auto, 30px auto, 25px auto, 32px auto;
+    }
+    100% {
+        background-position: 14% -10%, 60% 30%, 30% 50%, 45% 10%, 7% 90%;
+        background-size: 0px auto, 0px auto, 0px auto, 0px auto, 0px auto;
+    }
+}
+.button.animate::after { 
+    bottom: -70%;
+    background-image: url('waterTypeimages/bluebubble.png'),
+        url('waterTypeimages/bluebubble.png'),
+        url('whiteImages/spinStar.gif'),
+        url('whiteImages/spinSwirl.gif'),
+        url('whiteImages/spinSwirl.gif');
+
+    background-position: 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%;
+    background-size:  0px auto, 0px auto, 0px auto, 0px auto, 0px auto;
+}
+
+.button.animate:hover::after {
+    animation: bottomBubbles 1.5s ease-in-out infinite;
+}
+@keyframes bottomBubbles {
+    0% {
+        background-size: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+        background-position: 50% 100%, 50% 100%, 50% 100%, 50% 100%;
+    }
+    50% {
+        background-position: 85% 80%, 40% 30%, 70% 40%, 55% 80%, 90% 10%;
+        background-size:  26px auto, 30px auto, 30px auto, 25px auto, 32px auto;
+    }
+    100% {
+        background-position: 90% 110%, 35% 115%, 75% 120%, 55% 110%, 100% 110%;
+        background-size: 0px auto, 0px auto, 0px auto, 0px auto, 0px auto;
+    }
+}
+
+/*FLOATING ANIMATION*/
+@keyframes floater {
+    0%{transform:
+translateY(0%);transition: ease
+0.4s;}
+    50%{transform:
+translateY(-12%);transition: ease
+0.4s;}  
+    100%{transform:
+translateY(0%);transition: ease
+0.4s;}  
+}
+
+.sketchbook-page {
+    background: url("backgrounds/greyPolka.jpg") center / cover no-repeat fixed;
+    
+}
+
+.sketchbook-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: min(900px, calc(100vw - 32px));
+    height: min(78vh, 700px);
+    transform: translateY(24px);
+}
+
+.sketchbook-title {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    z-index: 1;
+    margin: 0;
+    transform: translateX(-50%);
+    color: #6be1ff;
+    font-family: 'Rodin Pro Bold', sans-serif;
+    font-size: 36px;
+    text-align: center;
+}
+
+.sketchbook-grid img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    object-fit: contain;
+    cursor: pointer;
+    scale: 1;
+    transition: scale 0.18s ease;
+}
+
+.sketchbook-grid img:hover {
+    z-index: 1;
+    scale: 1.08;
+    animation: sketchbook-image-shake 0.2s ease-in-out infinite alternate;
+}
+
+@keyframes sketchbook-image-shake {
+    from {
+        translate: -2px 0;
+    }
+    to {
+        translate: 2px 0;
+    }
+}
+
+.about-page {
+    background: url("backgrounds/greyPolka.jpg") center / cover no-repeat fixed;
+}
+
+.about-title {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    z-index: 1;
+    margin: 0;
+    transform: translateX(-50%);
+    color: #6be1ff;
+    font-family: 'Rodin Pro Bold', sans-serif;
+    font-size: 36px;
+    text-align: center;
+}
+
+.mii-waving {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+
+.box {
+    width: 500px;
+    height: 200px;
+    background-color: #6be1ff;
+    border-radius: 20px;
+    top: -10%;
+    position: relative;
+}
+
+.box::before {
+    content: "";
+    position: absolute;
+    border: 20px solid transparent;
+    border-top-color: #6be1ff;
+    bottom: -1.2rem;
+    left: 1.5rem;
+
+    transform: rotate(90deg);
+    
+}

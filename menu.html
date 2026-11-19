@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SWAG!</title>
+        <link href="style.css" rel="stylesheet">
+
+    </head>
+
+    <body>
+        <p><span class="custom-word" style="color: rgb(16, 223, 255);" >Blessed</span></p>
+
+        <div class="video-container">
+            <video src="./templates/loopPersona3.mp4" 
+                   type="video/mp4" autoplay muted playsinline loop></video>
+        </div>
+
+        <div class="links-container" style="letter-spacing: -4px; 
+            line-height: 90%;"> 
+                
+                <audio src="./templates/assets_sounds_ui_menu1.wav" class="menu-sound"></audio> 
+
+                 <a href="aboutMe.html" style="color: rgb(134, 240, 222); text-decoration: none;
+                --rotation: -3deg;" data-text="About Me">About Me</a>
+                <a href="sketchbook.html" style="color: rgb(61, 180, 239); text-decoration: none;
+                --rotation: 0deg;" data-text="Sketchbook">Sketchbook</a>
+                <a href="hobbies.html" style="color: rgb(170, 231, 249); text-decoration: none;
+                --rotation: -3deg;" data-text="Hobbies">Hobbies</a>
+                <a href="favs.html" style="color: rgb(134, 240, 222); text-decoration: none;
+                --rotation: 2deg;" data-text="Favs">Favs</a>
+                <a href="credits.html" style="color: rgb(61, 180, 239); text-decoration: none;
+                --rotation: -4deg;" data-text="Credits">Credits</a>
+
+        </div>
+
+        <div class="phone">
+            <img src="./templates/vintageFlip.png" alt="Phone"></img>
+        </div>
+
+        <button class="back-button">
+            <a href="index.html" style="text-decoration: none; color: rgb(138, 230, 255);" 
+            data-text="Back to Start !">⟵ Take me Back !</a>
+            <audio src="./templates/assets_sounds_ui_menu1.wav" class="button-hover-sound"></audio>
+            <audio src="./templates/assets_sounds_ui_splash.wav" class="button-click-sound"></audio>
+        </button>
+
+        <script src="./main.js"></script>
+    </body>
+</html>

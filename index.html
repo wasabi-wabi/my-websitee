@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Fredoka:wght@600&display=swap" rel="stylesheet">
+
+    
+    <!-- 2. Your Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+        <body>
+
+            <div class="button-float-wrap">
+
+                <audio src="./templates/assets_sounds_ui_menu1.wav" class="button-hover-sound"></audio>
+                <audio src="./templates/assets_sounds_ui_splash.wav" class="button-click-sound"></audio>
+                <a href="menu.html" class="button">
+                <span class="button-text">Start !</span>
+                </a>
+            </div>
+
+            <!--<div class="phone-container" id="phoneContainer">
+            <img src="./templates/vintageFlip.png" alt="Phone-container"></img>
+            </div> -->
+            
+
+        <script>
+                const button = document.querySelector(".button");
+                const hoverSound = document.querySelector(".button-hover-sound");
+                const clickSound = document.querySelector(".button-click-sound");
+
+                button.addEventListener("mouseenter", () => {
+                    hoverSound.currentTime = 0;
+                    hoverSound.play().catch(() => {});
+                });
+
+                button.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    clickSound.currentTime = 0;
+                    clickSound.play().catch(() => {});
+                    button.classList.remove("animate");
+                    button.classList.add("animate");
+
+                    setTimeout(() => {
+                        const destination = button.getAttribute("href");
+                        window.location.href = `loading.html?next=${encodeURIComponent(destination)}`;
+                    }, 1500) //1s = 1000ms
+                
+                });
+            </script>
+
+            <script src="./main.js"></script>
+            
+            
+        </body>
+</html>
